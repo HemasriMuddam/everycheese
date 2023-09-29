@@ -9,7 +9,6 @@ from everycheese.users.views import (
     UserRedirectView,
     UserUpdateView,
 )
-
 pytestmark = pytest.mark.django_db
 
 
