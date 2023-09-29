@@ -12,3 +12,5 @@ class CheeseFactory(factory.django.DjangoModelFactory):
     firmness = factory.fuzzy.FuzzyChoice(
         [x[0] for x in Cheese.Firmness.choices]
     )
+    class Meta:
+        model = Cheese
