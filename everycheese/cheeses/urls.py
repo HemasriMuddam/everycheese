@@ -1,7 +1,10 @@
 # everycheese/cheeses/urls.py
 from django.urls import path
 from . import views
+from .views import CheeseDeleteView, CheeseListView
+
 app_name = "cheeses"
+app_name = 'cheese'
 urlpatterns = [
     path(
         route='',
@@ -23,5 +26,10 @@ urlpatterns = [
         route='<slug:slug>/',
         view=views.CheeseDetailView.as_view(),
         name='detail'),
-    
+    path(
+        route='<slug:slug>/delete/', 
+        view=views.CheeseDeleteView.as_view(),
+        name='Delete'),
+    path('', CheeseListView.as_view(), name='list'),
+    path('<int:pk>/delete/', CheeseDeleteView.as_view(), name='delete'),
 ]

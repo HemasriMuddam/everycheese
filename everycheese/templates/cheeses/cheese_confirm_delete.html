@@ -1,0 +1,16 @@
+  
+{% extends "base.html" %}
+
+{% block content %}
+  <div>
+    <h2>Delete Cheese</h2>
+    <p>Delete {{ object.name }}?</p>
+  </div>
+  <div>
+    <form method="post" style="display: inline;">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-danger">Delete</button>
+      <a class="btn btn-secondary" href="{% url 'cheeses:list' %}">Cancel</a>
+    </form>
+</div>
+{% endblock content %}

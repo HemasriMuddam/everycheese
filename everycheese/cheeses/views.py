@@ -1,7 +1,9 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, DetailView
 from .models import Cheese
-from django.views.generic import CreateView, UpdateView
+from django.views.generic import CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
+from django.shortcuts import redirect
 
 
 class CheeseListView(ListView):
@@ -24,3 +26,9 @@ class CheeseUpdateView(LoginRequiredMixin, UpdateView):
     'country_of_origin'
     ]
     action = "Update"
+class CheeseDeleteView(DeleteView):
+    model = Cheese
+    action = "Delete"
+    success_url = reverse_lazy('cheeses:list')  # Redirect after deletion
+    template_name = 'cheeses/cheese_confirm_delete.html'  # Template for confirmation
+    

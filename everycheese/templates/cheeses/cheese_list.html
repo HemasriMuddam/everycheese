@@ -7,6 +7,7 @@
         <tr>
             <th>Cheese</th>
             <th>Country of Origin</th>
+            
         </tr>
     </thead>
     <tbody>
@@ -14,8 +15,14 @@
         <tr>
             <td><a href="{% url 'cheeses:detail' cheese.slug %}">{{ cheese.name }}</a></td>
             <td>{% if cheese.country_of_origin %}{{ cheese.country_of_origin.name }}{% else %}N/A{% endif %}</td>
+            <td>
+                    
+                <a href="{% url 'cheeses:Delete' cheese.slug %}" class="btn btn-danger">Delete</a>
+                    
+            </td>
         </tr>
         {% endfor %}
+        
     </tbody>
 </table>
 <hr/>
