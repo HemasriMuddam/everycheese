@@ -28,6 +28,7 @@ urlpatterns = [
     path(
         'cheeses/',
         include('everycheese.cheeses.urls',namespace='cheeses'),
+        
 ),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
