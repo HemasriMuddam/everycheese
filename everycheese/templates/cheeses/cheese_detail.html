@@ -19,6 +19,8 @@
 <p>Country of Origin: {{ cheese.country_of_origin.name }}
 <img src="{{ cheese.country_of_origin.flag }}" />
 </p>
+{% if cheese.average_rating %}
+<p>Rating: {{ cheese.average_rating }}/5</p>
 {% endif %}
 <hr/>
 <h3>Submitted by
@@ -28,6 +30,7 @@
 </h3>
 {% if cheese.creator.name %}
 <p>{{ cheese.creator.name }}</p>
+{% endif %}
 {% endif %}
 
 {% endblock content %}

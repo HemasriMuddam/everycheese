@@ -5,7 +5,6 @@ from django.views.generic import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 import logging  # Import the logging module
 
-
 # Create a logger object
 log = logging.getLogger("root")
 
@@ -48,10 +47,22 @@ class CheeseUpdateView(LoginRequiredMixin, UpdateView):
         else:
             ctx["rating"] = 0
         return ctx
-    
+    def form_valid(self, form):
+        # Get the cheese being updated
+        cheese = self.object
+
+        # Get or create the rating for the current user and cheese
+        rating, created = Rating.objects.get_or_create(creator=self.request.user, cheese=cheese)
+
+        # Update the rating value based on the form data
+        rating.i_rating = int(self.request.POST.get('rating'))  # Safely retrieve the rating value
+        rating.save()
+
+        return super().form_valid(form)
     
 class CheeseDeleteView(DeleteView):
     model = Cheese
     action = "Delete"
     success_url = reverse_lazy('cheeses:list')  # Redirect after deletion
     template_name = 'cheeses/cheese_confirm_delete.html'  # Template for confirmation
+

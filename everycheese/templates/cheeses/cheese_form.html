@@ -9,7 +9,10 @@
 <form method="post" action=".">
 {% csrf_token %}
 {{ form|crispy }}
-<p>Rating : {{ rating }}</p>
+<div class="form-group">
+    <label for="id_rating">Rating:</label>
+    <input type="number" id="id_rating" name="rating" min="0" max="5" value="{{ rating }}" class="form-control">
+</div>
 <button type="submit" class="btn btn-primary">
 {{ action }}
 </button>
